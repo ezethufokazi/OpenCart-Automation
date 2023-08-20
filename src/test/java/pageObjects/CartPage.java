@@ -72,7 +72,8 @@ public class CartPage extends BasePage {
     }
 
     // returns total price from cart summary
-    public String getTotalPrice() {
+    public String getTotalPrice() throws InterruptedException {
+    	Thread.sleep(2000);
         return tdTotalPrice.getText();
     }
 

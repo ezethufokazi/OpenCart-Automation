@@ -10,12 +10,12 @@ import pageObjects.ProductDisplayPage;
 import pageObjects.SearchResults;
 import testBase.BaseClass;
 
-public class TC007_LoggedInUserCheckout extends BaseClass {
+public class TC008_LoggedInUserCheckout extends BaseClass {
 
     @Test(groups = {"Regression", "Master"})
     public void verifyLoggedInUserCheckout() throws InterruptedException {
         try {
-            logger.info("***** Starting TC007_LoggedInUserCheckout *****");
+            logger.info("***** Starting TC008_LoggedInUserCheckout *****");
 
             String product = p.getProperty("searchProdName");
 
@@ -57,7 +57,6 @@ public class TC007_LoggedInUserCheckout extends BaseClass {
             if(existingAddress) {
                 cop.selectExistingAddress();
                 cop.selectAddress();
-                cop.clickContinue();
             } else {
                 cop.setLoggedInShippingAddress(
                     p.getProperty("firstName"),
@@ -87,10 +86,10 @@ public class TC007_LoggedInUserCheckout extends BaseClass {
                 "Order was not placed successfully");
             logger.info("Order placed successfully");
 
-            logger.info("***** TC007_LoggedInUserCheckout PASSED *****");
+            logger.info("***** TC008_LoggedInUserCheckout PASSED *****");
 
         } catch(Exception e) {
-            logger.error("TC007_LoggedInUserCheckout FAILED: " + e.getMessage());
+            logger.error("TC008_LoggedInUserCheckout FAILED: " + e.getMessage());
             Assert.fail(e.getMessage());
         }
     }

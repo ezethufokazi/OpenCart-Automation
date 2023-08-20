@@ -54,7 +54,8 @@ public class HomePage extends BasePage {
     }
 
     // enters product name in search box
-    public void enterProduct(String productName) {
+    public void enterProduct(String productName) throws InterruptedException {
+        Thread.sleep(2000);
         txtSearch.clear();
         txtSearch.sendKeys(productName);
     }

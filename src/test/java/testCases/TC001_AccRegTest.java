@@ -25,7 +25,8 @@ public class TC001_AccRegTest extends BaseClass {
             String firstName = randomString().toUpperCase();
             String lastName  = randomString().toUpperCase();
             String email     = randomString() + "@gmail.com";
-            String password  = randomAlphaNumeric();
+         //   String password  = randomAlphaNumeric();
+            String password  = "12345";
 
             regpage.setFirstName(firstName);
             regpage.setLastName(lastName);

@@ -39,6 +39,14 @@ public class TC003_LoginDataDriven extends BaseClass {
             // Check if login was successful
             MyAccount mc = new MyAccount(driver);
             boolean loginSuccessful = mc.myAccExists();
+            
+			  /*
+             * Test logic:
+             * Valid credentials + login success   → PASS  → logout
+             * Valid credentials + login fails     → FAIL
+             * Invalid credentials + login success → FAIL  → logout
+             * Invalid credentials + login fails   → PASS
+             */
 
             if(expectedResult.equalsIgnoreCase("Valid")) {
                 if(loginSuccessful) {

@@ -8,18 +8,19 @@ import pageObjects.ProductDisplayPage;
 import pageObjects.SearchResults;
 import testBase.BaseClass;
 
-public class TC008_RegisterCheckout extends BaseClass {
+public class TC007_GuestCheckoutTest extends BaseClass {
 
     @Test(groups = {"Regression", "Master"})
-    public void verifyRegisterAndCheckout() throws InterruptedException {
+    public void verifyGuestCheckout() throws InterruptedException {
         try {
-            logger.info("***** Starting TC008_RegisterCheckout *****");
+            logger.info("***** Starting TC007_GuestCheckoutTest *****");
 
             String product = p.getProperty("searchProdName");
 
             // Navigate directly to search results
             driver.get(p.getProperty("appURL")
                 + "index.php?route=product/search&search=" + product);
+            logger.info("Searching for: " + product);
 
             // Click on product
             SearchResults sr = new SearchResults(driver);
@@ -31,58 +32,65 @@ public class TC008_RegisterCheckout extends BaseClass {
             Assert.assertTrue(pdp.isTitleDisplayed(product),
                 "Wrong product page loaded");
             pdp.addToCart();
-            Assert.assertTrue(pdp.getAlertMessage().contains("Success"),
-                "Add to cart failed");
+
+            String cartMsg = pdp.getAlertMessage();
+            Assert.assertTrue(cartMsg.contains("Success"),
+                "Add to cart failed - message: " + cartMsg);
             logger.info("Product added to cart successfully");
 
             // Navigate to cart and checkout
             pdp.goToCart();
             CartPage cp = new CartPage(driver);
             cp.checkout();
+            logger.info("Navigated to checkout page");
 
-            // Select register checkout
+            // Select guest checkout
             CheckoutPage cop = new CheckoutPage(driver);
-            cop.selectRegisterCheckout();
+            cop.selectGuestCheckout();
+            logger.info("Selected guest checkout");
 
             // Enter personal details
             String firstName = randomString();
             String lastName  = randomString();
             String email     = randomString() + "@gmail.com";
-            String password  = randomAlphaNumeric();
             cop.setPersonalDetails(firstName, lastName, email);
             logger.info("Personal details entered for: " + email);
 
-            // Enter shipping address and password
+            // Enter shipping address
             cop.setShippingAddress(
                 p.getProperty("address.line1"),
                 p.getProperty("address.city"),
                 p.getProperty("address.postcode"),
                 p.getProperty("address.country"),
                 p.getProperty("address.region"));
-            cop.setPassword(password);
-            cop.setPrivacyPolicy();
             cop.clickRegContinue();
-            logger.info("Registration details submitted");
+            logger.info("Shipping address entered");
 
-            Assert.assertTrue(cop.getInformationSavedMsg(),
-                "Registration information was not saved successfully");
-            logger.info("Registration information saved successfully");
+            // Verify information saved
+            boolean infoSaved = cop.getInformationSavedMsg();
+            Assert.assertTrue(infoSaved,
+                "Guest information was not saved successfully");
+            logger.info("Guest information saved successfully");
 
-            // Shipping and payment
+            // Select shipping and payment method
             cop.selectShippingMethod();
             cop.selectPaymentMethod();
 
+            // Verify total price
             Assert.assertTrue(cop.verifyTotalPrice(),
-                "Total price incorrect");
+                "Total price incorrect - shipping not applied correctly");
+            logger.info("Total price verified successfully");
+
+            // Confirm order
             cop.confirmOrder();
             Assert.assertTrue(cop.isOrderPlaced(),
                 "Order was not placed successfully");
             logger.info("Order placed successfully");
 
-            logger.info("***** TC008_RegisterCheckout PASSED *****");
+            logger.info("***** TC007_GuestCheckoutTest PASSED *****");
 
         } catch(Exception e) {
-            logger.error("TC008_RegisterCheckout FAILED: " + e.getMessage());
+            logger.error("TC007_GuestCheckoutTest FAILED: " + e.getMessage());
             Assert.fail(e.getMessage());
         }
     }

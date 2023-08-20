@@ -10,12 +10,12 @@ import pageObjects.ProductDisplayPage;
 import pageObjects.SearchResults;
 import testBase.BaseClass;
 
-public class TC007b_LoggedInNewAddress extends BaseClass {
+public class TC009_LoggedInNewAddress extends BaseClass {
 
     @Test(groups = {"Regression", "Master"})
     public void verifyLoggedInNewAddress() throws InterruptedException {
         try {
-            logger.info("***** Starting TC007b_LoggedInNewAddress *****");
+            logger.info("***** Starting TC009_LoggedInNewAddress *****");
 
             String product = p.getProperty("searchProdName");
 
@@ -86,10 +86,10 @@ public class TC007b_LoggedInNewAddress extends BaseClass {
                 "Order was not placed successfully");
             logger.info("Order placed successfully");
 
-            logger.info("***** TC007b_LoggedInNewAddress PASSED *****");
+            logger.info("***** TC009_LoggedInNewAddress PASSED *****");
 
         } catch(Exception e) {
-            logger.error("TC007b_LoggedInNewAddress FAILED: " + e.getMessage());
+            logger.error("TC009_LoggedInNewAddress FAILED: " + e.getMessage());
             Assert.fail(e.getMessage());
         }
     }

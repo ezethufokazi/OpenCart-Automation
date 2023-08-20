@@ -9,12 +9,12 @@ import pageObjects.ProductDisplayPage;
 import pageObjects.SearchResults;
 import testBase.BaseClass;
 
-public class TC005_VerifyCartPage extends BaseClass {
+public class TC006_VerifyCartPage extends BaseClass {
 
     @Test(groups = {"Regression", "Master"})
     public void verify_cart() {
         try {
-            logger.info("***** Starting TC005_VerifyCartPage *****");
+            logger.info("***** Starting TC006_VerifyCartPage *****");
 
             String product = p.getProperty("searchProdName");
 
@@ -93,10 +93,10 @@ public class TC005_VerifyCartPage extends BaseClass {
                 "Cart is not empty after product removal");
             logger.info("Cart is empty: " + cp.getEmptyCartMessage());
 
-            logger.info("***** TC005_VerifyCartPage PASSED *****");
+            logger.info("***** TC006_VerifyCartPage PASSED *****");
 
         } catch(Exception e) {
-            logger.error("TC005_VerifyCartPage FAILED: " + e.getMessage());
+            logger.error("TC006_VerifyCartPage FAILED: " + e.getMessage());
             Assert.fail(e.getMessage());
         }
     }

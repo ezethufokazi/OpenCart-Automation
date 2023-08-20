@@ -1,7 +1,9 @@
 package pageObjects;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -70,15 +72,27 @@ public class ProductDisplayPage extends BasePage {
     // adds product to wishlist
     public void addToWishlist() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.invisibilityOf(alertSuccessMsg));
-        btnAddToWishlist.click();
+
+        // Hover over the product image first to reveal buttons
+        Actions actions = new Actions(driver);
+        actions.moveToElement(btnAddToWishlist).perform();
+
+        // Wait for button to be visible then click
+        wait.until(ExpectedConditions.elementToBeClickable(btnAddToWishlist));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", btnAddToWishlist);
     }
 
     // adds product to compare list
     public void addToCompareList() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.invisibilityOf(alertSuccessMsg));
-        btnAddToCompareList.click();
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(btnAddToCompareList).perform();
+
+        wait.until(ExpectedConditions.elementToBeClickable(btnAddToCompareList));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", btnAddToCompareList);
     }
 
     // navigates to shopping cart page

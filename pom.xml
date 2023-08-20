@@ -4,6 +4,11 @@
   <artifactId>OpencartV121</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
+  <properties>
+    <maven.compiler.release>21</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
+  
   <build>
       <pluginManagement>
       <plugins>
@@ -51,6 +56,14 @@
     <groupId>org.apache.poi</groupId>
     <artifactId>poi-ooxml</artifactId>
     <version>5.5.1</version>
+    <scope>compile</scope>
+</dependency>
+
+<!-- Source: https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+<dependency>
+    <groupId>io.github.bonigarcia</groupId>
+    <artifactId>webdrivermanager</artifactId>
+    <version>6.3.4</version>
     <scope>compile</scope>
 </dependency>
 

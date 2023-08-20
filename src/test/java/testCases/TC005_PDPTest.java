@@ -8,12 +8,12 @@ import pageObjects.ProductDisplayPage;
 import pageObjects.SearchResults;
 import testBase.BaseClass;
 
-public class TC004_PDPTest extends BaseClass {
+public class TC005_PDPTest extends BaseClass {
 
     @Test(groups = {"Regression", "Master"})
     public void verifyPDP() {
         try {
-            logger.info("***** Starting TC004_PDPTest *****");
+            logger.info("***** Starting TC005_PDPTest *****");
 
             String product = p.getProperty("searchProdName");
 
@@ -65,13 +65,14 @@ public class TC004_PDPTest extends BaseClass {
                 "Wrong product added to cart - message: " + cartMsg);
             logger.info("Product successfully added to cart");
 
-            // Add to wishlist
+			
+			 // Add to wishlist 
             logger.info("Adding product to wishlist");
-            pdp.addToWishlist();
-            String wishlistMsg = pdp.getAlertMessage();
+            pdp.addToWishlist(); String wishlistMsg = pdp.getAlertMessage();
             logger.info("Wishlist message: " + wishlistMsg);
             Assert.assertTrue(wishlistMsg.contains("Success"),
-                "Add to wishlist failed - message: " + wishlistMsg);
+			  "Add to wishlist failed - message: " + wishlistMsg);
+			 
 
             // Add to compare list
             logger.info("Adding product to compare list");
@@ -81,10 +82,10 @@ public class TC004_PDPTest extends BaseClass {
             Assert.assertTrue(compareMsg.contains("Success"),
                 "Add to compare list failed - message: " + compareMsg);
 
-            logger.info("***** TC004_PDPTest PASSED *****");
+            logger.info("***** TC005_PDPTest PASSED *****");
 
         } catch(Exception e) {
-            logger.error("TC004_PDPTest FAILED: " + e.getMessage());
+            logger.error("TC005_PDPTest FAILED: " + e.getMessage());
             Assert.fail(e.getMessage());
         }
     }

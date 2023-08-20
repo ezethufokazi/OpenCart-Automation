@@ -6,12 +6,12 @@ import pageObjects.HomePage;
 import pageObjects.SearchResults;
 import testBase.BaseClass;
 
-public class TC003_SearchTest extends BaseClass {
+public class TC004_SearchTest extends BaseClass {
 
     @Test(groups = {"Sanity", "Regression", "Master"})
     public void verify_search() {
         try {
-            logger.info("**** Starting TC003_SearchTest ****");
+            logger.info("**** Starting TC004_SearchTest ****");
 
             String product = p.getProperty("searchProdName");
 
@@ -42,10 +42,10 @@ public class TC003_SearchTest extends BaseClass {
                 Assert.fail("Product not found in search results: " + product);
             }
 
-            logger.info("**** TC003_SearchTest PASSED ****");
+            logger.info("**** TC004_SearchTest PASSED ****");
 
         } catch(Exception e) {
-            logger.error("TC003_SearchTest FAILED: " + e.getMessage());
+            logger.error("TC004_SearchTest FAILED: " + e.getMessage());
             Assert.fail(e.getMessage());
         }
     }

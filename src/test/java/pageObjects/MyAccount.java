@@ -1,5 +1,6 @@
 package pageObjects;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -39,6 +40,7 @@ public class MyAccount extends BasePage {
     }
 
     public void clickLogout() {
-        lnkLogout.click();
+		JavascriptExecutor js= (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", lnkLogout);
     }
 }
