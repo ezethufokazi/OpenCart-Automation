@@ -1,5 +1,6 @@
 package pageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -119,9 +120,13 @@ public class CartPage extends BasePage {
 
     // scrolls to and clicks checkout button
     public void checkout() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        // wait for any alerts to disappear first
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(
+            By.xpath("//div[@class='alert alert-success alert-dismissible']")));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript(
             "arguments[0].scrollIntoView({block: 'center'});", btnCheckout);
-        btnCheckout.click();
+        js.executeScript("arguments[0].click();", btnCheckout);
     }
 }

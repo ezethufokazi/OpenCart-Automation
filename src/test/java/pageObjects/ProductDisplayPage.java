@@ -25,10 +25,10 @@ public class ProductDisplayPage extends BasePage {
     @FindBy(css="#button-cart")
     WebElement btnAddToCart;
 
-    @FindBy(xpath="//button[@aria-label='Add to Wish List']")
+    @FindBy(xpath="//button[contains(@formaction,'wishlist.add')]")
     WebElement btnAddToWishlist;
 
-    @FindBy(xpath="//button[@aria-label='Compare this Product']")
+    @FindBy(xpath="//button[contains(@formaction,'compare.add')]")
     WebElement btnAddToCompareList;
 
     @FindBy(xpath="//div[@class='alert alert-success alert-dismissible']")
@@ -72,12 +72,7 @@ public class ProductDisplayPage extends BasePage {
     // adds product to wishlist
     public void addToWishlist() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        // Hover over the product image first to reveal buttons
-        Actions actions = new Actions(driver);
-        actions.moveToElement(btnAddToWishlist).perform();
-
-        // Wait for button to be visible then click
+        wait.until(ExpectedConditions.invisibilityOf(alertSuccessMsg));
         wait.until(ExpectedConditions.elementToBeClickable(btnAddToWishlist));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", btnAddToWishlist);
@@ -86,10 +81,7 @@ public class ProductDisplayPage extends BasePage {
     // adds product to compare list
     public void addToCompareList() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        Actions actions = new Actions(driver);
-        actions.moveToElement(btnAddToCompareList).perform();
-
+        wait.until(ExpectedConditions.invisibilityOf(alertSuccessMsg));
         wait.until(ExpectedConditions.elementToBeClickable(btnAddToCompareList));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", btnAddToCompareList);
