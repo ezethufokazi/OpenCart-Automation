@@ -1,0 +1,18 @@
+# Maven
+target/
+
+# Reports and logs
+reports/
+screenshots/
+logs/
+
+# Test output
+test-output/
+.classpath
+.project
+.settings/
+
+# Java
+*.class
+
+
