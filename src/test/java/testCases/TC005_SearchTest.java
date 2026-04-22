@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import pageObjects.HomePage;
-import pageObjects.ProductDisplayPage;
 import pageObjects.SearchResults;
 import testBase.BaseClass;
 

@@ -1,8 +1,5 @@
 package testCases;
 
-import java.time.Duration;
-
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

@@ -7,7 +7,6 @@ import pageObjects.CartPage;
 import pageObjects.CheckoutPage;
 import pageObjects.HomePage;
 import pageObjects.LoginPage;
-import pageObjects.MyAccount;
 import pageObjects.ProductDisplayPage;
 import pageObjects.SearchResults;
 import testBase.BaseClass;
