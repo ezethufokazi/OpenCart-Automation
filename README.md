@@ -76,7 +76,6 @@ docker-compose down
 ### Run specific groups:
 ```bash
 mvn test -Dgroups=Smoke
-mvn test -Dgroups=Smoke
 mvn test -Dgroups=Regression
 mvn test -Dgroups=Datadriven
 ```
@@ -87,7 +86,7 @@ Update `src/test/resources/config.properties`:
 execution_env=local   # change to remote for Grid
 browser=chrome
 os=windows
-appURL=http://localhost/opencart/
+appURL=http://host.docker.internal/opencart/
 ```
 
 ## Reports
